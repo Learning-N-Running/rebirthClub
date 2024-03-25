@@ -36,7 +36,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
 };
 
 const BodyContainer = styled.div`
-  /* background-color: black; */
   width: 100vw;
   height: 100%;
 
