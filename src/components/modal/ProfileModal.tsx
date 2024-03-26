@@ -1,8 +1,5 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import colors from "@/styles/color";
-import Image from "next/image";
-// import { WindowContext } from '@/context/window';
 
 type Props = {
   children?: ReactNode;

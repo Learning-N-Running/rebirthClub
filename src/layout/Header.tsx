@@ -51,6 +51,7 @@ const Container = styled.div`
   height: 84px;
 
   position: fixed;
+  z-index: 10;
 
   display: flex;
   align-items: center;
@@ -60,7 +61,7 @@ const Container = styled.div`
 
   background-color: white;
 
-  border: 1px solid black;
+  border-bottom: 1px solid #e5e7eb;
 `;
 
 const Logo = styled(Image)`

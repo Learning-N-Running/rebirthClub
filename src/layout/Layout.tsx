@@ -5,14 +5,13 @@ import { styled } from "styled-components";
 import Header from "./Header";
 import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
-import { getIsLoggedInState } from "@/redux/slice/authSlice";
+import Image from "next/image";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
-  const isLoggedIn = useSelector(getIsLoggedInState);
   const [isClient, setIsClient] = useState(false);
-  const showHeader = () => {
-    if (pathname === "/" && !isLoggedIn) {
+  const showGoBack = () => {
+    if (pathname === "/") {
       return false;
     }
     return true;
@@ -30,7 +29,19 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      <BodyContainer>{children}</BodyContainer>
+
+      <BodyContainer>
+        {showGoBack() && (
+          <GoBack
+            width={32}
+            height={32}
+            alt="go back"
+            src="/images/leftArrow.svg"
+          />
+        )}
+
+        {children}
+      </BodyContainer>
     </>
   );
 };
@@ -42,6 +53,11 @@ const BodyContainer = styled.div`
   padding-top: 84px;
 
   overflow: auto;
+`;
+
+const GoBack = styled(Image)`
+  margin: 48px 0px 38px 110px;
+  cursor: pointer;
 `;
 
 export default Layout;
