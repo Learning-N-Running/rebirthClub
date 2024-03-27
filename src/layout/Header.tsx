@@ -4,11 +4,19 @@ import { styled } from "styled-components";
 import Image from "next/image";
 import { useState } from "react";
 import ProfileModal from "@/components/modal/ProfileModal";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getIsLoggedInState,
+  getProfileImageState,
+} from "@/redux/slice/authSlice";
+import LoginButton from "@/components/common/LoginButton";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [isLogIn, setIsLogin] = useState(true); // redux로 관리할 필요 있음
+
+  const isLoggedIn = useSelector(getIsLoggedInState);
+  const profileImage = useSelector(getProfileImageState);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   return (
     <Container>
@@ -27,23 +35,26 @@ const Header = () => {
         >
           DAO 소개
         </WhiteButton>
-        {isLogIn ? (
+        {isLoggedIn ? (
           <>
             <ProfileImage
-              src="/images/header_profile.png"
+              src={profileImage!}
               alt="header profile"
               width={36}
               height={36}
-              style={{ marginLeft: "28px" }}
+              style={{ marginLeft: "28px", borderRadius: "50%" }}
               onClick={() => {
                 setIsProfileModalOpen(!isProfileModalOpen);
                 console.log(isProfileModalOpen);
               }}
             />
-            <ProfileModal show={isProfileModalOpen} />
+            <ProfileModal
+              show={isProfileModalOpen}
+              setIsProfileModalOpen={setIsProfileModalOpen}
+            />
           </>
         ) : (
-          <GreenButton style={{ marginLeft: "28px" }}>로그인</GreenButton>
+          <LoginButton />
         )}
       </div>
     </Container>
@@ -87,22 +98,14 @@ const WhiteButton = styled.button`
   color: black;
 
   border: none;
-  cursor: pointer;
-`;
-
-const GreenButton = styled.button`
-  height: 48px;
-  padding: 0 22px 0 22px;
-
-  background-color: #b2e898;
-  color: #108168;
-
-  font-weight: 700;
-  font-size: 18px;
-
-  border: none;
   border-radius: 10px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+
+  padding: 0 10px;
 `;
 
 const ProfileImage = styled(Image)`

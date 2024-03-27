@@ -101,6 +101,10 @@ const GrayBlock = styled.div`
 
   border-radius: 39px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #dcdcdc;
+  }
 `;
 
 const GrayBlockText = styled.div`

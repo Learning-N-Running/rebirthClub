@@ -4,6 +4,7 @@ import "./globals.css";
 import Layout from "@/layout/Layout";
 import GlobalStyle from "@/styles/global";
 import Providers from "@/redux/provider";
+import { Web3AuthProvider } from "@/context/Web3AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body>
         <GlobalStyle />
         <Providers>
-          <Layout>{children}</Layout>
+          <Web3AuthProvider>
+            <Layout>{children}</Layout>
+          </Web3AuthProvider>
         </Providers>
       </body>
     </html>

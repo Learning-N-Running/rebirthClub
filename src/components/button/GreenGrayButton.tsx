@@ -39,4 +39,8 @@ const Wrapper = styled.button<{ $isGray: boolean; $margin: string }>`
   margin: ${(props) => props.$margin};
 
   cursor: pointer;
+
+  &:hover {
+    background-color: #078571;
+  }
 `;

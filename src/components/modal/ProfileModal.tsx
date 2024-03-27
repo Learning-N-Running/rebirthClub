@@ -1,14 +1,18 @@
+import { SET_USER_LOGOUT } from "@/redux/slice/authSlice";
 import { useRouter } from "next/navigation";
-import React, { ReactNode } from "react";
+import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 type Props = {
   children?: ReactNode;
   show: boolean;
+  setIsProfileModalOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const ProfileModal = ({ children, show }: Props) => {
+const ProfileModal = ({ children, show, setIsProfileModalOpen }: Props) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   return (
     show && (
       <>
@@ -20,7 +24,15 @@ const ProfileModal = ({ children, show }: Props) => {
           >
             마이콜렉션
           </Item>
-          <Item $isEndItem={true}>로그아웃</Item>
+          <Item
+            $isEndItem={true}
+            onClick={() => {
+              dispatch(SET_USER_LOGOUT());
+              setIsProfileModalOpen(false); // setIsProfileModalOpen 함수 호출
+            }}
+          >
+            로그아웃
+          </Item>
           {children}
         </ModalContainer>
       </>

@@ -1,12 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "@/redux/slice/authSlice";
-import web3Reducer from "@/redux/slice/web3Slice";
 import { persistReducer, persistStore } from "redux-persist";
 import sessionStorage from "redux-persist/lib/storage/session";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  web3: web3Reducer,
 });
 
 const persistConfig = {
