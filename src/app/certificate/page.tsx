@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
-import CertificateNFT from "@/components/CertificateNFT";
-import InstructionTitle from "@/components/InstructionTitle";
+import CertificateNFT from "@/components/common/certificate/CertificateNFT";
+import InstructionTitle from "@/components/common/InstructionTitle";
 import { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
 import GreenGrayButton from "@/components/button/GreenGrayButton";

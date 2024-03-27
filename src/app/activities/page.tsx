@@ -1,7 +1,7 @@
 "use client";
-import Activity from "@/components/Activity";
-import InstructionTitle from "@/components/InstructionTitle";
-import Timeline from "@/components/TimeLine";
+import Activity from "@/components/common/activities/Activity";
+import InstructionTitle from "@/components/common/InstructionTitle";
+import Timeline from "@/components/common/TimeLine";
 import { styled } from "styled-components";
 import activities from "../../lib/activities.json";
 

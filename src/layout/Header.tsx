@@ -17,10 +17,16 @@ const Header = () => {
         alt="rebirth club logo"
         width={100}
         height={100}
-        onClick={() => router.push("/")} //수정 필요
+        onClick={() => router.push("/")}
       />
       <div style={{ display: "flex", alignItems: "center" }}>
-        <WhiteButton>DAO 소개</WhiteButton>
+        <WhiteButton
+          onClick={() => {
+            router.push(`/dao-intro`);
+          }}
+        >
+          DAO 소개
+        </WhiteButton>
         {isLogIn ? (
           <>
             <ProfileImage

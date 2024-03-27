@@ -52,10 +52,8 @@ export default function Authentication({
       {isPasswordTrue == "true" && <MessageModal title={"발급 완료"} />}
       <Container>
         <Wrapper>
-          <Name>{"비건 맛집 투어 <Vegan? Vegan!>"}</Name>
-          <Title style={{ marginTop: "12px" }}>
-            {"비건 디저트와 사랑에 빠진 폴보이"}
-          </Title>
+          <Name>{name}</Name>
+          <Title style={{ marginTop: "12px" }}>{title}</Title>
           <Guide>
             인증번호 <span style={{ color: "#159075" }}>4자리</span>를
             입력해주세요.

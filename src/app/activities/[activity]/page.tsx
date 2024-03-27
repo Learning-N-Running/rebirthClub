@@ -2,9 +2,9 @@
 
 import React from "react";
 import { styled } from "styled-components";
-import ActivityNFT from "@/components/ActivityNFT";
+import ActivityNFT from "@/components/common/activities/ActivityNFT";
 import GreenGrayButton from "@/components/button/GreenGrayButton";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import activities from "../../../lib/activities.json";
 
 export default function SingleActivityPage({
@@ -25,10 +25,12 @@ export default function SingleActivityPage({
     NFTImgSrc = activity.NFTImgSrc;
   }
   const parts = story!.split("/");
+
+  const router = useRouter();
   return (
     <Container>
       <Date>{date}</Date>
-      <Name>{name}</Name>
+      <Name>{name?.replace("/", "")}</Name>
       <Index>{`N.0${index}`}</Index>
       <Title>{title}</Title>
       <Story>
@@ -51,7 +53,9 @@ export default function SingleActivityPage({
           <GreenGrayButton
             isGray={false}
             title={"발급받기"}
-            onClickHandler={() => {}}
+            onClickHandler={() => {
+              router.push(`/activities/${index}/authentication`);
+            }}
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import InstructionTitle from "@/components/InstructionTitle";
+import InstructionTitle from "@/components/common/InstructionTitle";
 import BaseBanner from "@/components/banner/BaseBanner";
 import { getIsLoggedInState } from "@/redux/slice/authSlice";
 import colors from "@/styles/color";
