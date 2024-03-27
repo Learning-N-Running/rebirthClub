@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
@@ -7,12 +8,18 @@ type Props = {
 };
 
 const ProfileModal = ({ children, show }: Props) => {
+  const router = useRouter();
   return (
     show && (
       <>
         {" "}
         <ModalContainer $show={show}>
-          <Item $isEndItem={false}>마이콜렉션</Item>
+          <Item
+            $isEndItem={false}
+            onClick={() => router.push("/my-collection")}
+          >
+            마이콜렉션
+          </Item>
           <Item $isEndItem={true}>로그아웃</Item>
           {children}
         </ModalContainer>
@@ -48,4 +55,6 @@ const Item = styled.div<{ $isEndItem: boolean }>`
     props.$isEndItem ? "10px 24px 7px 24px" : "7px 24px 10px 24px"};
 
   border-bottom: ${(props) => !props.$isEndItem && "1px solid #d1d5db"};
+
+  cursor: pointer;
 `;

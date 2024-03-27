@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
   const showGoBack = () => {
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === "/my-collection") {
       return false;
     }
     return true;
