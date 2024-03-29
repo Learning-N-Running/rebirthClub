@@ -29,6 +29,7 @@ const Wrapper = styled.button<{ $isGray: boolean; $margin: string }>`
 
   font-size: 18px;
   font-weight: 600;
+  font-family: Pretendard;
 
   height: 46px;
   padding: 12.5px 23px;

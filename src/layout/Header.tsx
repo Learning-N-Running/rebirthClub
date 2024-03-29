@@ -93,6 +93,7 @@ const WhiteButton = styled.button`
 
   font-weight: 500;
   font-size: 24px;
+  font-family: Pretendard;
 
   background-color: white;
   color: black;

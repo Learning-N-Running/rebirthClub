@@ -96,6 +96,7 @@ const GreenButton = styled.button`
 
   font-weight: 700;
   font-size: 18px;
+  font-family: Pretendard;
 
   border: none;
   border-radius: 10px;

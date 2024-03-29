@@ -2,37 +2,64 @@
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
     body {
-    font-family: 'ABeeZee'
+    font-family: 'Pretendard'
     }
 
-  // Acme
-  @font-face {
-    font-family: 'Acme';
-    src: local('AcmeRegular');
-    font-style: normal;
-    src: url('/static/Acme/Acme-Regular.ttf') format('truetype');
-  }
-
-    // ABeeZee
+    // Pretendard
     @font-face {
-    font-family: 'ABeeZee';
-    src: local('ABeeZeeRegular');
+    font-family: 'Pretendard';
     font-style: normal;
-    src: url('/static/ABeeZee/ABeeZee-Regular.ttf') format('truetype');
+    font-weight: 100;
+    src: url('/static/Pretendard-Thin.ttf') format('truetype');
   }
   @font-face {
-    font-family: 'ABeeZee';
-    src: local('ABeeZeeItalic');
-    font-style: italic;
-    src: url('/static/ABeeZee/ABeeZee-Italic.ttf') format('truetype');
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    src: url('/static/Pretendard-ExtraLight.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/static/Pretendard-Light.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/Pretendard-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/static/Pretendard-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/static/Pretendard-SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/static/Pretendard-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 800;
+    src: url('/static/Pretendard-ExtraBold.ttf') format('truetype');
   }
 
-  // AnekDevanagari
   @font-face {
-    font-family: 'AnekDevanagari';
-    src: local('AnekDevanagariRegular');
+    font-family: 'Pretendard';
     font-style: normal;
-    src: url('/static/AnekDevanagari/AnekDevanagari-Regular.ttf') format('truetype');
+    font-weight: 900;
+    src: url('/static/Pretendard-Black.ttf') format('truetype');
   }
 
 `;
