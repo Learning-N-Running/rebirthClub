@@ -19,7 +19,6 @@ const LoginButton = () => {
   const web3auth = useWeb3Auth();
 
   useEffect(() => {
-    console.log(web3auth);
     async function initialize() {
       await web3auth!.initModal();
     }

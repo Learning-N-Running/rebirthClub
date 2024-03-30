@@ -4,8 +4,51 @@ import InstructionTitle from "@/components/common/InstructionTitle";
 import Timeline from "@/components/common/TimeLine";
 import { styled } from "styled-components";
 import activities from "../../lib/activities.json";
+import { AlchemyProvider, ethers } from "ethers";
+import { activityNFTAddress } from "@/lib/contractAddresses";
+import activityNFTABI from "../..//lib/ActivityNFT.json";
+import { useSelector } from "react-redux";
+import { getAddressState } from "@/redux/slice/authSlice";
+import { useDispatch } from "react-redux";
+import {
+  SET_ACTIVITY_NFT_INDEX,
+  getActivityNFTIndexesState,
+} from "@/redux/slice/nftSlice";
+import { useEffect } from "react";
 
 export default function Activities() {
+  const userAddress: string | null = useSelector(getAddressState);
+  const activityNFTIndexes = useSelector(getActivityNFTIndexesState);
+
+  const provider = new AlchemyProvider(
+    "maticmum",
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
+
+  const signer = new ethers.Wallet( //contract 소유자가 직접 트랜잭션을 보내야함.
+    process.env.NEXT_PUBLIC_PRIVATE_KEY!,
+    provider
+  );
+
+  let activityNFTContract = new ethers.Contract(
+    activityNFTAddress,
+    activityNFTABI,
+    signer
+  );
+
+  const dispatch = useDispatch();
+  async function updateIndexList() {
+    const indexList = await activityNFTContract.getIndexesByAddress(
+      userAddress
+    );
+    const newIndexList = indexList.map((item: BigInt) => Number(item));
+    dispatch(SET_ACTIVITY_NFT_INDEX({ activityNFTIndexes: newIndexList }));
+  }
+
+  useEffect(() => {
+    updateIndexList();
+  }, []);
+
   return (
     <Container>
       <ActivitiesWrapper>
@@ -23,6 +66,7 @@ export default function Activities() {
                 name={activity.name}
                 date={activity.date}
                 index={activity.index}
+                isButtonActivated={!activityNFTIndexes.includes(activity.index)}
                 key={index}
               />
             ))}

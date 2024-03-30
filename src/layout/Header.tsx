@@ -45,7 +45,6 @@ const Header = () => {
               style={{ marginLeft: "28px", borderRadius: "50%" }}
               onClick={() => {
                 setIsProfileModalOpen(!isProfileModalOpen);
-                console.log(isProfileModalOpen);
               }}
             />
             <ProfileModal

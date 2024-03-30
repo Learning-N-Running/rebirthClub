@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "@/redux/slice/authSlice";
+import nftReducer from "@/redux/slice/nftSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import sessionStorage from "redux-persist/lib/storage/session";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  nft: nftReducer,
 });
 
 const persistConfig = {

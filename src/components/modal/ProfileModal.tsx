@@ -20,7 +20,10 @@ const ProfileModal = ({ children, show, setIsProfileModalOpen }: Props) => {
         <ModalContainer $show={show}>
           <Item
             $isEndItem={false}
-            onClick={() => router.push("/my-collection")}
+            onClick={() => {
+              setIsProfileModalOpen(false);
+              router.push("/my-collection");
+            }}
           >
             마이콜렉션
           </Item>

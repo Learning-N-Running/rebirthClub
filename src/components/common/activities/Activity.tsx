@@ -8,9 +8,10 @@ type Props = {
   index: number;
   name: string;
   date: string;
+  isButtonActivated: boolean;
 };
 
-const Activity = ({ imgSrc, index, name, date }: Props) => {
+const Activity = ({ imgSrc, index, name, date, isButtonActivated }: Props) => {
   const router = useRouter();
   return (
     <Container>
@@ -45,8 +46,8 @@ const Activity = ({ imgSrc, index, name, date }: Props) => {
         <Date>{date}</Date>
       </div>
       <GreenGrayButton
-        isGray={false}
-        title={"발급받기"}
+        isGray={!isButtonActivated}
+        title={isButtonActivated ? "발급받기" : "발급완료"}
         onClickHandler={() => {
           router.push(`/activities/${index}`);
         }}

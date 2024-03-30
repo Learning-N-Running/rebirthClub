@@ -5,8 +5,13 @@ import activities from "../../../../lib/activities.json";
 import { ChangeEvent, useState } from "react";
 import MessageModal from "@/components/modal/MessageModal";
 import { useRouter } from "next/navigation";
+import { AlchemyProvider, ethers } from "ethers";
+import { activityNFTAddress } from "@/lib/contractAddresses";
+import activityNFTABI from "../../../../lib/ActivityNFT.json";
+import { useSelector } from "react-redux";
+import { getAddressState } from "@/redux/slice/authSlice";
 
-type passwordT = "beforeEnter" | "true" | "false";
+type authT = "beforePwEnter" | "pwWrong" | "nftPending" | "nftComplete";
 
 export default function Authentication({
   params,
@@ -27,29 +32,56 @@ export default function Authentication({
   const router = useRouter();
 
   const [password, setPassword] = useState("");
-  const [isPasswordTrue, setIsPasswordTrue] =
-    useState<passwordT>("beforeEnter");
+  const [authState, setAuthState] = useState<authT>("beforePwEnter");
+  const userAddress: string | null = useSelector(getAddressState);
 
   const handleInputChange: any = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     if (password === pw) {
       console.log("성공");
-      setIsPasswordTrue("true");
+      setAuthState("nftPending");
+      await mintActivityNFT(activity?.NFTURI!);
+      setAuthState("nftComplete");
       setTimeout(() => {
-        setIsPasswordTrue("beforeEnter");
-        router.push(`/activities/${index}`);
+        router.push(`/activities`);
       }, 1500);
     } else {
-      setIsPasswordTrue("false");
+      setAuthState("pwWrong");
     }
   };
 
+  const provider = new AlchemyProvider(
+    "maticmum",
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
+  const signer = new ethers.Wallet( //contract 소유자가 직접 트랜잭션을 보내야함.
+    process.env.NEXT_PUBLIC_PRIVATE_KEY!,
+    provider
+  );
+
+  let activityNFTContract = new ethers.Contract(
+    activityNFTAddress,
+    activityNFTABI,
+    signer
+  );
+
+  async function mintActivityNFT(URI: string) {
+    const mintActivityNft = await activityNFTContract.safeMint(
+      userAddress,
+      index,
+      URI
+    );
+    const receiptMintActivityNft = await mintActivityNft.wait();
+    console.log(receiptMintActivityNft);
+  }
+
   return (
     <>
-      {isPasswordTrue == "true" && <MessageModal title={"발급 완료"} />}
+      {authState === "nftComplete" && <MessageModal title={"발급 완료"} />}
+      {authState === "nftPending" && <MessageModal title={"발급 중"} />}
       <Container>
         <Wrapper>
           <Name>{name}</Name>
@@ -74,7 +106,7 @@ export default function Authentication({
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={handleInputChange}
-              $isTrue={isPasswordTrue}
+              $isTrue={authState}
             />
             <GreenGrayButton
               isGray={false}
@@ -82,7 +114,7 @@ export default function Authentication({
               onClickHandler={handleButtonClick}
             />
           </div>
-          {isPasswordTrue == "false" && (
+          {authState == "pwWrong" && (
             <AuthWarning>번호가 일치하지 않습니다.</AuthWarning>
           )}
         </Wrapper>
@@ -133,13 +165,13 @@ const GuideDetail = styled.div`
   margin-top: 12px;
 `;
 
-const AuthInput = styled.input<{ $isTrue: passwordT }>`
+const AuthInput = styled.input<{ $isTrue: authT }>`
   width: 206px;
   height: 60px;
   background-color: #f3f4f6;
 
   border: ${(props) =>
-    props.$isTrue !== "false" ? "2px solid #0aa98d" : "2px solid #EF4444"};
+    props.$isTrue !== "pwWrong" ? "2px solid #0aa98d" : "2px solid #EF4444"};
   border-radius: 12px;
 
   padding: 20px 18px;

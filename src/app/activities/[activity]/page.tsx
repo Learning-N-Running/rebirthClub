@@ -1,11 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import ActivityNFT from "@/components/common/activities/ActivityNFT";
 import GreenGrayButton from "@/components/button/GreenGrayButton";
 import { useRouter } from "next/navigation";
 import activities from "../../../lib/activities.json";
+import { AlchemyProvider, ethers } from "ethers";
+import { activityNFTAddress } from "@/lib/contractAddresses";
+import activityNFTABI from "../../../lib/ActivityNFT.json";
+import { useSelector } from "react-redux";
+import { getAddressState } from "@/redux/slice/authSlice";
+import { getActivityNFTIndexesState } from "@/redux/slice/nftSlice";
 
 export default function SingleActivityPage({
   params,
@@ -24,9 +30,23 @@ export default function SingleActivityPage({
     story = activity.story;
     NFTImgSrc = activity.NFTImgSrc;
   }
+
   const parts = story!.split("/");
+  const activityNFTIndexes = useSelector(getActivityNFTIndexesState);
 
   const router = useRouter();
+
+  const [isButtonActivated, setIsButtonActivated] = useState(true);
+
+  useEffect(() => {
+    for (let i = 0; i < activityNFTIndexes.length; i++) {
+      if (Number(index) === activityNFTIndexes[i]) {
+        setIsButtonActivated(false);
+        break;
+      }
+    }
+  }, []);
+
   return (
     <Container>
       <Date>{date}</Date>
@@ -50,13 +70,21 @@ export default function SingleActivityPage({
             marginLeft: "auto",
           }}
         >
-          <GreenGrayButton
-            isGray={false}
-            title={"발급받기"}
-            onClickHandler={() => {
-              router.push(`/activities/${index}/authentication`);
-            }}
-          />
+          {isButtonActivated ? (
+            <GreenGrayButton
+              isGray={false}
+              title={"발급받기"}
+              onClickHandler={() => {
+                router.push(`/activities/${index}/authentication`);
+              }}
+            />
+          ) : (
+            <GreenGrayButton
+              isGray={true}
+              title={"발급완료"}
+              onClickHandler={() => {}}
+            />
+          )}
         </div>
       </div>
     </Container>

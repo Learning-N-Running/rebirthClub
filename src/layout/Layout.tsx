@@ -3,23 +3,38 @@
 import { ReactNode, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Header from "./Header";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const showGoBack = () => {
-    if (pathname === "/" || pathname === "/my-collection") {
+    if (
+      pathname === "/" ||
+      pathname === "/my-collection" ||
+      pathname === "/dao-intro"
+    ) {
       return false;
     }
     return true;
   };
 
+  const handleGoBack = () => {
+    const pathnameParts = pathname.split("/");
+    if (pathnameParts.length === 2) {
+      return "/";
+    }
+    const newPathname = pathnameParts.slice(0, -1).join("/");
+    return newPathname;
+  };
+
   // useEffect //
   useEffect(() => {
     setIsClient(true);
+    handleGoBack();
   }, []);
 
   if (!isClient) {
@@ -37,6 +52,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             height={32}
             alt="go back"
             src="/images/leftArrow.svg"
+            onClick={() => router.push(handleGoBack())}
           />
         )}
 
