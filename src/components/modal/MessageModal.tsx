@@ -6,12 +6,13 @@ import Image from "next/image";
 type Props = {
   title: string;
   children?: ReactNode;
+  isWarning?: boolean;
 };
 
-const MessageModal = ({ title, children }: Props) => {
+const MessageModal = ({ title, children, isWarning }: Props) => {
   return (
     <ModalBackground>
-      <ModalContainer>
+      <ModalContainer $isWarning={isWarning ? isWarning : false}>
         <ModalTitle>{title}</ModalTitle>
         {children}
       </ModalContainer>
@@ -34,7 +35,7 @@ const ModalBackground = styled.section`
   margin: 0 auto;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div<{ $isWarning: boolean }>`
   background-color: ${colors.white};
 
   position: absolute;
@@ -46,6 +47,7 @@ const ModalContainer = styled.div`
 
   border-radius: 60px;
   border: 2px solid #0aa98d;
+  border: ${(props) => props.$isWarning && "2px solid #EF4444"};
 `;
 
 const ModalTitle = styled.div`

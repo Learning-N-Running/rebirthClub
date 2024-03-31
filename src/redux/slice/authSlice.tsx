@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { INITIALIZE_NFT_STATE } from "./nftSlice";
 
 interface IAuthState {
   isLoggedIn: boolean;
@@ -44,6 +46,17 @@ const authSlice = createSlice({
       state.nickname = null;
       state.address = null;
       state.profileImage = null;
+      // 로컬 스토리지의 모든 아이템 삭제
+      localStorage.clear();
+      // 모든 쿠키 삭제
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie =
+          name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
+      }
     },
   },
 });

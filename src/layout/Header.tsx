@@ -13,8 +13,6 @@ import LoginButton from "@/components/common/LoginButton";
 
 const Header = () => {
   const router = useRouter();
-  const pathname = usePathname();
-
   const isLoggedIn = useSelector(getIsLoggedInState);
   const profileImage = useSelector(getProfileImageState);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);

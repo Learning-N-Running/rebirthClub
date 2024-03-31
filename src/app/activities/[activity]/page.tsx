@@ -6,11 +6,7 @@ import ActivityNFT from "@/components/common/activities/ActivityNFT";
 import GreenGrayButton from "@/components/button/GreenGrayButton";
 import { useRouter } from "next/navigation";
 import activities from "../../../lib/activities.json";
-import { AlchemyProvider, ethers } from "ethers";
-import { activityNFTAddress } from "@/lib/contractAddresses";
-import activityNFTABI from "../../../lib/ActivityNFT.json";
 import { useSelector } from "react-redux";
-import { getAddressState } from "@/redux/slice/authSlice";
 import { getActivityNFTIndexesState } from "@/redux/slice/nftSlice";
 
 export default function SingleActivityPage({
@@ -30,12 +26,9 @@ export default function SingleActivityPage({
     story = activity.story;
     NFTImgSrc = activity.NFTImgSrc;
   }
-
   const parts = story!.split("/");
   const activityNFTIndexes = useSelector(getActivityNFTIndexesState);
-
   const router = useRouter();
-
   const [isButtonActivated, setIsButtonActivated] = useState(true);
 
   useEffect(() => {

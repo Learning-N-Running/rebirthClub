@@ -11,7 +11,7 @@ import activityNFTABI from "../../../../lib/ActivityNFT.json";
 import { useSelector } from "react-redux";
 import { getAddressState } from "@/redux/slice/authSlice";
 
-type authT = "beforePwEnter" | "pwWrong" | "nftPending" | "nftComplete";
+type nftT = "beforePwEnter" | "pwWrong" | "nftPending" | "nftComplete";
 
 export default function Authentication({
   params,
@@ -32,7 +32,7 @@ export default function Authentication({
   const router = useRouter();
 
   const [password, setPassword] = useState("");
-  const [authState, setAuthState] = useState<authT>("beforePwEnter");
+  const [nftState, setNftState] = useState<nftT>("beforePwEnter");
   const userAddress: string | null = useSelector(getAddressState);
 
   const handleInputChange: any = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,14 +42,14 @@ export default function Authentication({
   const handleButtonClick = async () => {
     if (password === pw) {
       console.log("성공");
-      setAuthState("nftPending");
+      setNftState("nftPending");
       await mintActivityNFT(activity?.NFTURI!);
-      setAuthState("nftComplete");
+      setNftState("nftComplete");
       setTimeout(() => {
         router.push(`/activities`);
       }, 1500);
     } else {
-      setAuthState("pwWrong");
+      setNftState("pwWrong");
     }
   };
 
@@ -80,8 +80,8 @@ export default function Authentication({
 
   return (
     <>
-      {authState === "nftComplete" && <MessageModal title={"발급 완료"} />}
-      {authState === "nftPending" && <MessageModal title={"발급 중"} />}
+      {nftState === "nftComplete" && <MessageModal title={"발급 완료!"} />}
+      {nftState === "nftPending" && <MessageModal title={"발급 중"} />}
       <Container>
         <Wrapper>
           <Name>{name}</Name>
@@ -106,7 +106,7 @@ export default function Authentication({
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={handleInputChange}
-              $isTrue={authState}
+              $isTrue={nftState}
             />
             <GreenGrayButton
               isGray={false}
@@ -114,7 +114,7 @@ export default function Authentication({
               onClickHandler={handleButtonClick}
             />
           </div>
-          {authState == "pwWrong" && (
+          {nftState == "pwWrong" && (
             <AuthWarning>번호가 일치하지 않습니다.</AuthWarning>
           )}
         </Wrapper>
@@ -165,7 +165,7 @@ const GuideDetail = styled.div`
   margin-top: 12px;
 `;
 
-const AuthInput = styled.input<{ $isTrue: authT }>`
+const AuthInput = styled.input<{ $isTrue: nftT }>`
   width: 206px;
   height: 60px;
   background-color: #f3f4f6;

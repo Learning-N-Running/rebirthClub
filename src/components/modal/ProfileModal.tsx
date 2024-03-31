@@ -1,4 +1,5 @@
 import { SET_USER_LOGOUT } from "@/redux/slice/authSlice";
+import { INITIALIZE_NFT_STATE } from "@/redux/slice/nftSlice";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, ReactNode, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
@@ -31,6 +32,7 @@ const ProfileModal = ({ children, show, setIsProfileModalOpen }: Props) => {
             $isEndItem={true}
             onClick={() => {
               dispatch(SET_USER_LOGOUT());
+              dispatch(INITIALIZE_NFT_STATE());
               setIsProfileModalOpen(false); // setIsProfileModalOpen 함수 호출
             }}
           >
