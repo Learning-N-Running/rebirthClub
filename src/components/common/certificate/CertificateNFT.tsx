@@ -61,23 +61,6 @@ const DetailWrapper = styled.div`
   align-items: center;
 `;
 
-// const NFTIndex = styled.div`
-//   height: 30px;
-//   width: 60px;
-
-//   text-align: center;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   font-size: 16px;
-//   font-weight: 400;
-//   color: #9ca3af;
-
-//   border: 1px solid #9ca3af;
-//   border-radius: 7px;
-// `;
-
 const NFTName = styled.div`
   font-size: 32px;
   font-weight: 700;

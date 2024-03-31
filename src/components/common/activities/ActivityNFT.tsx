@@ -5,11 +5,12 @@ type Props = {
   imgSrc: string;
   index: number;
   name: string;
+  margin?: string;
 };
 
-const ActivityNFT = ({ imgSrc, index, name }: Props) => {
+const ActivityNFT = ({ imgSrc, index, name, margin }: Props) => {
   return (
-    <Container>
+    <Container $margin={margin!}>
       <Thumbnail>
         <Image
           src={imgSrc}
@@ -28,12 +29,13 @@ const ActivityNFT = ({ imgSrc, index, name }: Props) => {
 
 export default ActivityNFT;
 
-const Container = styled.div`
+const Container = styled.div<{ $margin: string }>`
   width: 590px;
   height: 688px;
 
   border-radius: 40px;
   overflow: hidden;
+  margin: ${(props) => props.$margin};
 
   border: 2px solid #d1d5db;
 `;

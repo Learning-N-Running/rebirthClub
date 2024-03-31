@@ -18,10 +18,11 @@ import {
   activityNFTAddress,
   certificateNFTAddress,
 } from "@/lib/contractAddresses";
-import certificateNFTABI from "../../lib/CertificateNFT.json";
+
 import uploadFileToIPFS from "@/lib/uploadFileToIPFS";
 import { useRouter } from "next/navigation";
 import MessageModal from "@/components/modal/MessageModal";
+import certificateNFTABI from "../../lib/CertificateNFT.json";
 import activityNFTABI from "../../lib/ActivityNFT.json";
 
 type nftT = "beforeMint" | "cannotMint" | "nftPending" | "nftComplete";
@@ -30,8 +31,8 @@ export default function Certificate() {
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const activityNFTIndexes = useSelector(getActivityNFTIndexesState);
   const isLoggedIn = useSelector(getIsLoggedInState);
+  const activityNFTIndexes = useSelector(getActivityNFTIndexesState);
   const certificateNFTURI: string | null = useSelector(
     getCertificateNFTURIState
   );
