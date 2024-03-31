@@ -81,7 +81,7 @@ export default function Authentication({
   return (
     <>
       {nftState === "nftComplete" && <MessageModal title={"발급 완료!"} />}
-      {nftState === "nftPending" && <MessageModal title={"발급 중"} />}
+      {nftState === "nftPending" && <MessageModal title={"발급 중..."} />}
       <Container>
         <Wrapper>
           <Name>{name}</Name>

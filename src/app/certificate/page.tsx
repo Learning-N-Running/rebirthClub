@@ -159,7 +159,7 @@ export default function Certificate() {
         <MessageModal title={"2개 이상의 NFT가 필요해요."} isWarning={true} />
       )}
       {nftState === "nftComplete" && <MessageModal title={"발급 완료!"} />}
-      {nftState === "nftPending" && <MessageModal title={"발급 중"} />}
+      {nftState === "nftPending" && <MessageModal title={"발급 중..."} />}
       <Container>
         <div style={{ width: "840px" }}>
           <InstructionTitle
