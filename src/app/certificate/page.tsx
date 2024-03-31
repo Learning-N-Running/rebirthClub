@@ -143,9 +143,8 @@ export default function Certificate() {
       if (activityNFTIndexes.length === 0) {
         updateIndexList();
       }
-      if (certificateNFTURI === null) {
-        updateURI();
-      }
+
+      updateURI();
     } else {
       setShowLoginWarning(true);
       setTimeout(() => {
@@ -247,6 +246,10 @@ const LightGreenButton = styled.button`
   border-radius: 10px;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: #336633;
+  }
 `;
 
 const HiddenInput = styled.input`

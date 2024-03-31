@@ -78,9 +78,7 @@ export default function MyCollection() {
       if (activityNFTIndexes.length === 0) {
         updateIndexList();
       }
-      if (certificateNFTURI === null) {
-        updateURI();
-      }
+      updateURI();
     } else {
       setShowLoginWarning(true);
       setTimeout(() => {
@@ -95,7 +93,7 @@ export default function MyCollection() {
         <MessageModal title={"로그인 후 이용해주세요!"} isWarning={true} />
       )}
       <Container>
-        <div style={{ maxWidth: "860px" }}>
+        <div style={{ width: "860px" }}>
           <InstructionTitle
             isIcon={true}
             title={"마이콜렉션"}
@@ -104,9 +102,9 @@ export default function MyCollection() {
         </div>
         <NFTContainer>
           {activities.map(
-            (activity, index) =>
-              activity.index in activityNFTIndexes && (
-                <NFTWrapper key={index} style={{ marginRight: "38px" }}>
+            (activity, i) =>
+              activityNFTIndexes.includes(activity.index) && (
+                <NFTWrapper key={i} style={{ marginRight: "38px" }}>
                   <SmallWrapper>
                     <ActivityNFT
                       imgSrc={activity.NFTImgSrc}
