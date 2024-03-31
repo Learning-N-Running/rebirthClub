@@ -13,7 +13,11 @@ import {
   getCertificateNFTURIState,
 } from "@/redux/slice/nftSlice";
 import { AlchemyProvider, ethers } from "ethers";
-import { getAddressState, getIsLoggedInState } from "@/redux/slice/authSlice";
+import {
+  getAddressState,
+  getIsLoggedInState,
+  getNicknameState,
+} from "@/redux/slice/authSlice";
 import {
   activityNFTAddress,
   certificateNFTAddress,
@@ -36,6 +40,7 @@ export default function Certificate() {
   const certificateNFTURI: string | null = useSelector(
     getCertificateNFTURIState
   );
+  const nickcname = useSelector(getNicknameState);
   const [nftState, setNftState] = useState<nftT>("beforeMint");
   const userAddress: string | null = useSelector(getAddressState);
   const [showLoginWarning, setShowLoginWarning] = useState(false);
@@ -175,7 +180,7 @@ export default function Certificate() {
               : backgroundImage
           }
           NFTname={"환생클럽 1ST 수료증"}
-          userName="채채"
+          userName={nickcname!}
           margin="110px 0 47px 0"
         />
         <div style={{ width: "840px" }}>

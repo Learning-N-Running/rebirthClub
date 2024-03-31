@@ -10,7 +10,11 @@ import {
 import certificateNFTABI from "../../lib/CertificateNFT.json";
 import activityNFTABI from "../../lib/ActivityNFT.json";
 import { useDispatch, useSelector } from "react-redux";
-import { getAddressState, getIsLoggedInState } from "@/redux/slice/authSlice";
+import {
+  getAddressState,
+  getIsLoggedInState,
+  getNicknameState,
+} from "@/redux/slice/authSlice";
 import {
   SET_ACTIVITY_NFT_INDEXES,
   SET_CERTIFICATE_NFT_URI,
@@ -31,6 +35,7 @@ export default function MyCollection() {
   const certificateNFTURI: string | null = useSelector(
     getCertificateNFTURIState
   );
+  const nickcname = useSelector(getNicknameState);
   const [showLoginWarning, setShowLoginWarning] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -128,7 +133,7 @@ export default function MyCollection() {
                 <CertificateNFT
                   imgSrc={"https://ipfs.io/ipfs/" + certificateNFTURI}
                   NFTname={"환생클럽 1ST 수료증"}
-                  userName={"채채"}
+                  userName={nickcname!}
                 />
               </SmallWrapper>
               <div style={{ display: "flex" }}>
