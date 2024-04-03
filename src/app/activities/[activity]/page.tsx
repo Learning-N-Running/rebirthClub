@@ -44,7 +44,7 @@ export default function SingleActivityPage({
     <Container>
       <Date>{date}</Date>
       <Name>{name?.replace("/", "")}</Name>
-      <Index>{`N.0${index}`}</Index>
+      <Index>{`No.${index}`}</Index>
       <Title>{title}</Title>
       <Story>
         {parts.map((part, index) => (

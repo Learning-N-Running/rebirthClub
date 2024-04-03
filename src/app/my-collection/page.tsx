@@ -130,7 +130,7 @@ export default function MyCollection() {
               <SmallWrapper>
                 <CertificateNFT
                   imgSrc={"https://ipfs.io/ipfs/" + certificateNFTURI}
-                  NFTname={"환생클럽 1ST 수료증"}
+                  NFTname={"환생클럽 1st 수료증"}
                   userName={nickcname!}
                 />
               </SmallWrapper>

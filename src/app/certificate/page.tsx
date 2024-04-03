@@ -178,7 +178,7 @@ export default function Certificate() {
               ? "https://ipfs.io/ipfs/" + certificateNFTURI
               : backgroundImage
           }
-          NFTname={"환생클럽 1ST 수료증"}
+          NFTname={"환생클럽 1st 수료증"}
           userName={nickcname!}
           margin="110px 0 47px 0"
         />

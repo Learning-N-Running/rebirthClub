@@ -15,13 +15,19 @@ const CertificateNFT = ({ imgSrc, NFTname, userName, margin }: Props) => {
         {imgSrc && (
           <Image
             src={imgSrc}
-            alt="activity NFT thumbnail"
+            alt="certificate NFT thumbnail"
             fill
             style={{ objectFit: "cover" }}
           />
         )}
       </Thumbnail>
       <DetailWrapper>
+        <Image
+          src="/images/수료증_이미지삽입.png"
+          alt="Certificate detail background"
+          fill
+          style={{ objectFit: "cover" }}
+        />
         <NFTName>{NFTname}</NFTName>
         <UserName>{userName}</UserName>
       </DetailWrapper>
@@ -59,17 +65,27 @@ const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 const NFTName = styled.div`
+  position: absolute;
   font-size: 32px;
   font-weight: 700;
-  color: #6b7280;
+  color: #0aa98d;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 59px;
 `;
 
 const UserName = styled.div`
+  position: absolute;
   font-size: 42px;
   font-weight: 700;
   color: #159075;
-  margin-top: 28px;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 51px;
 `;
