@@ -1,24 +1,21 @@
 "use client";
-import BaseBanner from "@/components/banner/BaseBanner";
+import SlideBanner from "@/components/banner/SlideBanner";
 import { styled } from "styled-components";
 import Image from "next/image";
 import React from "react";
 import DAOactivity from "@/components/common/dao-intro/DAOactivity";
 import activities from "../../lib/activities.json";
+import BaseBanner from "@/components/banner/BaseBanner";
 
 export default function DaoIntro() {
   const DAOintro =
-    "2024년 2월 5일, 환경에 대한 관심으로 이어진 우리들은/환경을 생각하는 사람들, ‘환생클럽’을 개설하게 되었습니다./ /지향하는 환생클럽은 쉽게 실천할 수 있는 것부터 ‘함께’ 실행해보자는/생각으로 탄생한 환생클럽, 지난 N개월 간 많은 프로젝트를 전개하며";
+    "2024년 2월 5일, 환경에 대한 관심으로 이어진 우리들은/환경을 생각하는 사람들, ‘환생클럽’을 개설하게 되었습니다./ /쉽게 실천할 수 있는 것부터/‘함께’ 실행해 보자는 생각으로 탄생한 환생클럽은/지난 2개월간 위퍼블릭을 기반으로/다양한 프로젝트를 전개했습니다./ /평소 친환경 라이프를 실천하는 사람, 그렇지 않은 사람 모두/하나가 될 수 있었던 프로젝트들을 소개합니다!/ /환생클럽의 도전은 끝나지 않았습니다./앞으로의 환생클럽을 기대해 주세요!/ / /";
   const parts = DAOintro!.split("/");
   return (
     <>
       <BaseBanner>
         <BannerBackground>
-          <Image
-            src="/images/dao_intro_banner.svg"
-            alt="DAO intro Banner"
-            fill
-          />
+          <Image src="/images/banners/배너3.png" alt="DAO intro Banner" fill />
         </BannerBackground>
       </BaseBanner>
       <Container>
@@ -120,7 +117,7 @@ const Text2 = styled.div`
 
 const Text3 = styled.div`
   color: #1f2937;
-  font-size: 32;
+  font-size: 32px;
   font-weight: 700;
 
   margin-top: 6px;

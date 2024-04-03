@@ -1,7 +1,7 @@
 "use client";
 
 import InstructionTitle from "@/components/common/InstructionTitle";
-import BaseBanner from "@/components/banner/BaseBanner";
+import SlideBanner from "@/components/banner/SlideBanner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
@@ -10,22 +10,18 @@ export default function Home() {
   const router = useRouter();
   return (
     <>
-      <BaseBanner>
-        <div style={{ width: "100%", height: "100%", display: "flex" }}>
-          <BannerMessage>
-            환생클럽 전용
-            <br />
-            NFT 발급 페이지 OPEN!
-          </BannerMessage>
-          <Image
-            src="/images/home_banner.jpg"
-            alt="rebirth club home banner"
-            width={1000}
-            height={1000}
-            style={{ height: "100%", width: "auto" }}
-          />
-        </div>
-      </BaseBanner>
+      <SlideBanner>
+        <img
+          src="/images/banners/배너1.png"
+          alt="Banner 1"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <img
+          src="/images/banners/배너2.png"
+          alt="Banner 2"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </SlideBanner>
       <Container>
         <div style={{ display: "flex", alignItems: "center" }}>
           <InstructionTitle
