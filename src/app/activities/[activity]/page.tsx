@@ -43,7 +43,16 @@ export default function SingleActivityPage({
   return (
     <Container>
       <Date>{date}</Date>
-      <Name>{name?.replace("/", "")}</Name>
+      {/* <Name>{name?.replace("/", "")}</Name> */}
+      {name!.includes("/") ? (
+        <Name>
+          {name!.split("/")[0]}
+          <br />
+          {name!.split("/")[1]}
+        </Name>
+      ) : (
+        <Name>{name}</Name>
+      )}
       <Index>{`No.${index}`}</Index>
       <Title>{title}</Title>
       <Story>
@@ -102,7 +111,7 @@ const Name = styled.div`
   color: #4b5563;
   font-size: 24px;
   font-weight: 400;
-
+  text-align: center;
   margin-top: 16px;
 `;
 
