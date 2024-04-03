@@ -15,8 +15,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
     if (
       pathname === "/" ||
       pathname === "/my-collection" ||
-      pathname === "/dao-intro"
+      pathname === "/dao-intro" ||
+      pathname === "/not-pc-error"
     ) {
+      return false;
+    }
+    return true;
+  };
+
+  const showHeader = () => {
+    if (pathname === "/not-pc-error") {
       return false;
     }
     return true;
@@ -41,8 +49,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
       )
     ) {
       alert(
-        "이 웹사이트는 모바일 및 태블릿에서의 이용을 지원하지 않습니다. PC로 접속하세요."
+        "이 웹사이트는 모바일 및 태블릿에서의 이용을 지원하지 않습니다.\nPC로 접속해주세요!"
       ); // 모바일이나 태블릿 디바이스인 경우 경고창 표시
+      router.push("/not-pc-error");
     }
   }, []);
 
@@ -52,7 +61,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <Header />
+      {showHeader() && <Header />}
 
       <BodyContainer>
         {showGoBack() && (
