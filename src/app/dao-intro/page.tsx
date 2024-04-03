@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 import DAOactivity from "@/components/common/dao-intro/DAOactivity";
 import activities from "../../lib/activities.json";
-import BaseBanner from "@/components/banner/BaseBanner";
+import BaseBanner from "@/components/banner/BaseBanner";
 
 export default function DaoIntro() {
   const DAOintro =

@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <Container>
       <Logo
-        src="/images/rebirth_club_logo.svg"
+        src="/images/환생클럽_텍스트로고60x60.png"
         alt="rebirth club logo"
         width={100}
         height={100}

@@ -38,20 +38,32 @@ export default function Home() {
           }}
         >
           <BlockContainer>
-            <GrayBlock onClick={() => router.push("/activities")}>
-              <GrayBlockText>
+            <IssueBlock onClick={() => router.push("/activities")}>
+              <IssueImage
+                src="/images/issue-button/활동별NFT발급받기이미지.png"
+                alt="activity NFT issue button"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+              <IssueBlockText style={{ color: "#0AA98D" }}>
                 활동별
                 <br />
                 NFT 발급받기
-              </GrayBlockText>
-            </GrayBlock>
-            <GrayBlock onClick={() => router.push("/certificate")}>
-              <GrayBlockText>
+              </IssueBlockText>
+            </IssueBlock>
+            <IssueBlock onClick={() => router.push("/certificate")}>
+              <IssueImage
+                src="/images/issue-button/환생클럽수료증발급받기_이미지 .png"
+                alt="certificate NFT issue button"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+              <IssueBlockText style={{ color: "#B2E898" }}>
                 환생클럽
                 <br />
                 수료증 발급받기
-              </GrayBlockText>
-            </GrayBlock>
+              </IssueBlockText>
+            </IssueBlock>
           </BlockContainer>
         </div>
       </Container>
@@ -84,28 +96,31 @@ const BlockContainer = styled.div`
   width: 944px;
 `;
 
-const GrayBlock = styled.div`
+const IssueBlock = styled.div`
   position: relative;
-  background-color: #f1f1f1;
+  overflow: hidden;
 
   width: 365px;
   height: 365px;
 
   border-radius: 39px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #dcdcdc;
-  }
 `;
 
-const GrayBlockText = styled.div`
+const IssueImage = styled(Image)`
+  &:hover {
+    filter: brightness(90%);
+    transition: filter 0.01s ease-in-out;
+  }
+  cursor: pointer;
+`;
+
+const IssueBlockText = styled.div`
   position: absolute;
-  color: black;
 
   font-weight: 700;
   font-size: 32px;
 
   left: 40px;
   bottom: 40px;
+  z-index: 2;
 `;
