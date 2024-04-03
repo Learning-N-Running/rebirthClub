@@ -81,7 +81,9 @@ const NFTName = styled.div`
 
 const UserName = styled.div`
   position: absolute;
+  width: 840px;
   font-size: 42px;
+  text-align: center;
   font-weight: 700;
   color: #159075;
   z-index: 2;
