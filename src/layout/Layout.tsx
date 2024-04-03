@@ -34,7 +34,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
   // useEffect //
   useEffect(() => {
     setIsClient(true);
-    handleGoBack();
+    // handleGoBack();
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      alert(
+        "이 웹사이트는 모바일 및 태블릿에서의 이용을 지원하지 않습니다. PC로 접속하세요."
+      ); // 모바일이나 태블릿 디바이스인 경우 경고창 표시
+    }
   }, []);
 
   if (!isClient) {
